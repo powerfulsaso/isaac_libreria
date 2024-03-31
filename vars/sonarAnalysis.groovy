@@ -4,7 +4,7 @@ def call(boolean abortPipeline = false) {
     }
 
     try {
-        timeout(time: 10, unit: 'MINUTES') {
+        timeout(time: 5, unit: 'MINUTES') {
             def qualityGateResult = waitForQualityGate()
             if (qualityGateResult.status != 'OK') {
                 if (abortPipeline) {
