@@ -1,7 +1,6 @@
-@NonCPS
 def call(boolean abortPipeline = false) {
     withSonarQubeEnv('Sonar-Local') {
-        '/opt/homebrew/Cellar/sonar-scanner/5.0.1.3006/bin/sonar-scanner'.execute()
+        sh  '/opt/homebrew/Cellar/sonar-scanner/5.0.1.3006/bin/sonar-scanner'
     }
 
     try {
@@ -21,7 +20,7 @@ def call(boolean abortPipeline = false) {
     }
     catch (e) {
         if (abortPipeline) {
-            error 'Fallos encontrados en el Quality Gate.'
+            error "Fallos encontrados en el Quality Gate. ${e}"
         }
     }
 }
